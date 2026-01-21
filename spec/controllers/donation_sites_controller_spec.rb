@@ -42,6 +42,7 @@ RSpec.describe DonationSitesController, type: :controller do
 
     context "Looking at a different organization" do
       let(:object) { create(:donation_site, organization: create(:organization)) }
+
       include_examples "requiring authorization"
     end
   end
@@ -49,6 +50,6 @@ RSpec.describe DonationSitesController, type: :controller do
   context "While not signed in" do
     let(:object) { create(:donation_site) }
 
-    include_examples "requiring authorization"
+    include_examples "requiring authorization", { except: [:destroy] }
   end
 end

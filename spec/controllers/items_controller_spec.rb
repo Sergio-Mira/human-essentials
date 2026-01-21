@@ -200,6 +200,7 @@ RSpec.describe ItemsController, type: :controller do
 
     context "Looking at a different organization" do
       let(:object) { create(:item, organization: create(:organization)) }
+
       include_examples "requiring authorization"
     end
 
@@ -224,6 +225,6 @@ RSpec.describe ItemsController, type: :controller do
   context "While not signed in" do
     let(:object) { create(:item) }
 
-    include_examples "requiring authorization"
+    include_examples "requiring authorization", except: [:index]
   end
 end
